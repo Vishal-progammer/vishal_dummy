@@ -231,6 +231,33 @@ defmodule HrmWeb.CoreComponents do
     """
   end
 
+  # --------------------------------------------------------------------
+
+  attr :class, :string, default: nil
+
+  slot :inner_block, required: true
+  slot :text, required: true
+
+  def vishal_button(assigns) do
+    ~H"""
+    <button class={@class}>
+    <%= render_slot(@inner_block) %>
+    </button>
+    <p>
+    <%= render_slot(@text) %>
+    </p>
+    """
+  end
+# ---------------------------------------------------------------------
+  # class="rounded-full"
+    def image_with_border(assigns) do
+    ~H"""
+    <img scr="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt="hi" >
+    """
+  end
+# --------------------------------------------------------------------
+
+
   @doc """
   Renders an input with label and error messages.
 

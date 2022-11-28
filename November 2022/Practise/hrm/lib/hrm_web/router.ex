@@ -18,7 +18,20 @@ defmodule HrmWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    get "/guest", PageController, :index
+    get "/guests", GuestController, :index
+
+    # mix phx.gen.live Accounts User users name:string age:integer
+    # is the command to create this below routes and schema and migration
+
+    live "/users", UserLive.Index, :index
+    live "/users/new", UserLive.Index, :new
+    live "/users/:id/edit", UserLive.Index, :edit
+    live "/users/:id", UserLive.Show, :show
+    live "/users/:id/show/edit", UserLive.Show, :edit
+
+    live "/guest_houses", HostLive.Index, :index
+
+    live "/office", OfficeLive.Index
   end
 
   # Other scopes may use custom stacks.

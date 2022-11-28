@@ -1,0 +1,6 @@
+<header> List of Guests </header>
+<.table id="guests" rows={@guests}>
+  <:col :let={guest} label="id"><%= guest.id %></:col>
+  <:col :let={guest} label="First name"><%= guest.first_name %></:col>
+  <:col :let={guest} label="Last name"><%=guest.last_name %></:col>
+</.table>

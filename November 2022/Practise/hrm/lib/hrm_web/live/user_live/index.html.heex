@@ -1,0 +1,53 @@
+<.header class="myClass">
+  Listing Userssss
+  <:subtitle>
+  all AV users
+  </:subtitle>
+  <:actions>
+    <.link patch={~p"/users/new"}>
+      <.button>New User</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<!--<.vishal_button class="my-class bg-red">
+  <:text>
+    Hello vishal brother
+  </:text>
+  This is Vishal's brother's button
+</.vishal_button>
+<.image_with_border>
+</.image_with_border> -->
+
+<.table id="users" rows={@users} row_click={&JS.navigate(~p"/users/#{&1}")}>
+  <:col :let={user} label="Name"><%= user.name %></:col>
+  <:col :let={user} label="Age"><%= user.age %></:col>
+  <:action :let={user}>
+    <div class="sr-only">
+      <.link navigate={~p"/users/#{user}"}>Show</.link>
+    </div>
+    <.link patch={~p"/users/#{user}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={user}>
+    <.link phx-click={JS.push("delete", value: %{id: user.id})} data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="user-modal"
+  show
+  on_cancel={JS.navigate(~p"/users")}
+>
+  <.live_component
+    module={HrmWeb.UserLive.FormComponent}
+    id={@user.id || :new}
+    title={@page_title}
+    action={@live_action}
+    user={@user}
+    navigate={~p"/users"}
+  />
+</.modal>

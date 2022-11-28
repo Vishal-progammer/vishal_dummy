@@ -18,3 +18,9 @@ defmodule Hrm.GRS.Guest do
     |> validate_required([:first_name, :last_name, :nationality, :birth_date])
   end
 end
+
+# Hrm.Repo.all(Hrm.GRS.Guest)
+# this the command to view all record for this schema or it means get me all record of guest
+
+# %Hrm.GRS.Guest{}
+# this defines the sturture (or) sturt of the schema
